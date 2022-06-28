@@ -1,0 +1,1246 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix ids3cm: <https://w3id.org/ids3cm/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix idsa: <https://w3id.org/idsa/> .
+@prefix ids3c-co: <https://w3id.org/ids3c-component/> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://w3id.org/ids3cm/> a voaf:Vocabulary, owl:Ontology ;
+    rdfs:label "Model for IDS Certification Criteria Catalog"@en ;
+    dct:title "Model for IDS Certification Criteria Catalog"@en ;
+    rdfs:comment "This ontology defines classes and properties for describing certification criteria catalogs (components and operational environment)." ;
+    dct:creator <https://github.com/jlangkau> ;
+    dct:contributor <https://github.com/mhuber> ;
+    dct:publisher ids:IDSA ;
+    dct:created "2021-03-30"^^xsd:date ;
+    dct:modified "2021-04-12"^^xsd:date ;
+    owl:versionInfo "0.0.1" ;
+    owl:versionIRI <https://w3id.org/idsa/3cm/0.0.1> ;
+    vann:preferredNamespaceUri "https://w3id.org/idsa/3cm/" ;
+    vann:preferredNamespacePrefix "ids3cm" ;
+    void:vocabulary <http://purl.org/vocab/vann/>, <http://rdfs.org/ns/void#>, <http://purl.org/vocommons/voaf#>, <http://purl.org/dc/terms/>, <http://xmlns.com/foaf/0.1/> ;
+    rdfs:isDefinedBy ids:IDSA .
+
+<https://github.com/jlangkau> a dct:Agent, foaf:Person ;
+    foaf:name "Jörg Langkau" .
+
+<http://www.apache.org/licenses/LICENSE-2.0> rdfs:label "Apache License Version 2.0, January 2004"@en .
+
+<https://github.com/kretzschi> a dct:Agent, foaf:Person ;
+    foaf:name "Sascha Hackel" .
+
+<https://github.com/mohuber> a dct:Agent, foaf:Person ;
+    foaf:name "Monika Huber" .
+
+ids3cm:Applicant a owl:Class ;
+    rdfs:label "Class of Applicants"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids:InfrastructureComponent .
+
+ids3cm:Catalog a owl:Class ;
+    rdfs:label "Class of Catalog"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:catalogs a owl:ObjectProperty ;
+    rdfs:label "Catalogs"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:Catalog ;
+    rdfs:range ids3cm:Catalog .
+
+ids3cm:CertificationCriteriaCatalog a owl:Class ;
+    rdfs:label "Class of IDS Certification Criteria Catalogs"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:Catalog, dct:Standard .
+
+ids3cm:certificationCriterias a owl:ObjectProperty ;
+    rdfs:label "Criterias"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:CertificationCriteriaCatalog ;
+    rdfs:range ids3cm:Criteria ;
+    rdfs:subPropertyOf ids3cm:resources .
+
+ids3cm:Criteria a owl:Class ;
+    rdfs:label "Class of Criterias"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:ComponentsCertificationCriteriaCatalog a owl:Class ;
+    rdfs:label "Class of IDS Certification Criteria Catalogs for Components"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:CertificationCriteriaCatalog, dct:Standard .
+
+ids3cm:OperationalEnvironmentCertificationCriteriaCatalog a owl:Class ;
+    rdfs:label "Class of IDS Certification Criteria Catalogs for Operational Environments"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:CertificationCriteriaCatalog, dct:Standard .
+
+ids3cm:AuditLog a owl:Class ;
+    rdfs:label "Class of Audit Logs"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:Log .
+
+ids3cm:Log a owl:Class ;
+    rdfs:label "Class of Logs"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:status a owl:DatatypeProperty ;
+    rdfs:label "Status"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:AuditLog ;
+    rdfs:range ids3cm:Status .
+
+ids3cm:Component a owl:Class ;
+    rdfs:label "Class of Connectors"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids:InfrastructureComponent .
+
+ids3cm:Connector a owl:Class ;
+    rdfs:label "Class of Connectors"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:Component, ids:Connector .
+
+ids3cm:Broker a owl:Class ;
+    rdfs:label "Class of Connectors"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:Component, ids:Broker .
+
+ids3cm:Facility a owl:Class ;
+    rdfs:label "Class of Facilities"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf foaf:Agent, org:Organization, ids:Participant .
+
+ids3cm:profile a owl:ObjectProperty ;
+    rdfs:label "Profile"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1499 ;
+    rdfs:range ids3cm:Profile .
+
+_:n3-1499 a owl:Class ;
+    owl:unionOf _:n3-1500 .
+
+_:n3-1500 rdf:first ids3cm:Criteria ;
+    rdf:rest _:n3-1501 .
+
+_:n3-1501 rdf:first ids3cm:ComponentTestDesignSpecification ;
+    rdf:rest rdf:nil .
+
+ids3cm:ComponentTestDesignSpecification a owl:Class ;
+    rdfs:label "Class of Component Test Design Specifications"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:ComponentTestSpecification .
+
+ids3cm:Profile a owl:Class ;
+    rdfs:label "Class of Profiles"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:assuranceLevel a owl:ObjectProperty ;
+    rdfs:label "Assurance level"@en, "Assurance Level"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:Criteria, ids3cm:SecurityProfile ;
+    rdfs:range ids3cm:Profile, ids3cm:AssuranceLevel .
+
+ids3cm:CertificationCriteria a owl:Class ;
+    rdfs:label "Class of Certification Criterias"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:Criteria .
+
+ids3cm:ComponentCertificationCriteria a owl:Class ;
+    rdfs:label "Class of Certification Criterias for Components"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:Criteria .
+
+ids3cm:BrokerCertificationCriteria a owl:Class ;
+    rdfs:label "Class of Certification Criterias for Meta Data Broker"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:ComponentCertificationCriteria .
+
+ids3cm:CertificationCriteriaGroup a owl:Class ;
+    rdfs:label "Class of Certification Criteria Groups"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:criteria a owl:ObjectProperty ;
+    rdfs:label "Criteria"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1502 ;
+    rdfs:range ids3cm:Criteria .
+
+_:n3-1502 a owl:Class ;
+    owl:unionOf _:n3-1503 .
+
+_:n3-1503 rdf:first ids3cm:Component ;
+    rdf:rest _:n3-1504 .
+
+_:n3-1504 rdf:first ids3cm:CertificationCriteriaGroup ;
+    rdf:rest _:n3-1505 .
+
+_:n3-1505 rdf:first ids3cm:ComponentTestSpecification ;
+    rdf:rest _:n3-1506 .
+
+ids3cm:ComponentTestSpecification a owl:Class ;
+    rdfs:label "Class of Component Test Specifications"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:TestSpecification .
+
+_:n3-1506 rdf:first ids3cm:ComponentTestDesignSpecification ;
+    rdf:rest _:n3-1507 .
+
+_:n3-1507 rdf:first ids3cm:CheckListQuestion ;
+    rdf:rest _:n3-1508 .
+
+ids3cm:CheckListQuestion a owl:Class ;
+    rdfs:label "Question"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+_:n3-1508 rdf:first ids3cm:ValidationResult ;
+    rdf:rest rdf:nil .
+
+ids3cm:ValidationResult a owl:Class ;
+    rdfs:label "Class of Validation Results"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:certificationCriteriaGroup a owl:ObjectProperty ;
+    rdfs:label "Criteria Group"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1509 ;
+    rdfs:range ids3cm:CertificationCriteriaGroup .
+
+_:n3-1509 a owl:Class ;
+    owl:unionOf _:n3-1510 .
+
+_:n3-1510 rdf:first ids3cm:Catalog ;
+    rdf:rest rdf:nil .
+
+ids3cm:SecurityProfile a owl:Class ;
+    rdfs:label "Class of Security Profiles"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:Profile ;
+    dct:description "Whenever two components establish a communication channel, it’s up to them to decide which information they will send to the communication partner. Therefore, the identity and certification level (for both the participant and the component) must be provided by each component in the form of a digital certificate containing this information. As with the participant certification, this approach enables the data owner and data consumer to specify the security profile required for the core components used during data exchange.\r\n\r\nFor this purpose, the Industrial Data Space certification scheme defines three security profiles for the core components defined in the section Component Overview of this paper."@en .
+
+ids3cm:profileOf a owl:ObjectProperty ;
+    rdfs:label "Profile of"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:Profile ;
+    rdfs:range ids3cm:Criteria .
+
+ids3cm:securityProfileOf a owl:ObjectProperty ;
+    rdfs:label "Security Profile of"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:SecurityProfile ;
+    rdfs:range ids3cm:Criteria ;
+    rdfs:subPropertyOf ids3cm:profileOf .
+
+ids3cm:securityProfile a owl:ObjectProperty ;
+    rdfs:label "Security Profile"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1511 ;
+    rdfs:range ids3cm:SecurityProfile ;
+    rdfs:subPropertyOf ids3cm:profileOf .
+
+_:n3-1512 rdf:first ids3cm:ComponentTestDesignSpecification ;
+    rdf:rest rdf:nil .
+
+_:n3-1511 owl:unionOf _:n3-1512 .
+
+ids3cm:AssuranceLevel a owl:Class ;
+    rdfs:label "Class of Assurance Levels"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    dct:description "The depth and rigor of an evaluation consists of the following three assurance levels as defined by the Industrial Data Space certification scheme."@en ;
+    rdfs:seeAlso <https://internationaldataspaces.org/wp-content/uploads/IDSA-Strategy-paper-certification-scheme-V.2.pdf> .
+
+ids3cm:SP_Attacker a owl:Class ;
+    rdfs:label "Class of Security Profile Attackers"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:SP_Means a owl:Class ;
+    rdfs:label "Class of Security Profile Means"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:SP_Resources a owl:Class ;
+    rdfs:label "Class of Security Profile Resources"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:SP_Skills a owl:Class ;
+    rdfs:label "Class of Security Profile Skills"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:SP_Motivation a owl:Class ;
+    rdfs:label "Class of Security Profile Motivation"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:sp_attacker a owl:ObjectProperty ;
+    rdfs:label "Attacker"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:SecurityProfile ;
+    rdfs:range ids3cm:SP_Attacker .
+
+ids3cm:sp_means a owl:ObjectProperty ;
+    rdfs:label "Means"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:SecurityProfile ;
+    rdfs:range ids3cm:SP_Means .
+
+ids3cm:sp_resources a owl:ObjectProperty ;
+    rdfs:label "Resources"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:SecurityProfile ;
+    rdfs:range ids3cm:SP_Resources .
+
+ids3cm:sp_skills a owl:ObjectProperty ;
+    rdfs:label "Skills"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:SecurityProfile ;
+    rdfs:range ids3cm:SP_Skills .
+
+ids3cm:sp_motivation a owl:ObjectProperty ;
+    rdfs:label "Skills"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:SecurityProfile ;
+    rdfs:range ids3cm:SP_Motivation .
+
+ids3cm:CheckListQuestionary a owl:Class ;
+    rdfs:label "Questionary"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:criteriaGroup a owl:ObjectProperty ;
+    rdfs:label "Pages"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:CheckListQuestionary ;
+    rdfs:range ids3cm:CheckListCriteriaGroup .
+
+ids3cm:CheckListCriteriaGroup a owl:Class ;
+    rdfs:label "Page"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:question a owl:ObjectProperty ;
+    rdfs:label "Questions"@en, "Choices"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1513, _:n3-1519 ;
+    rdfs:range ids3cm:CheckListQuestion .
+
+_:n3-1513 a owl:Class ;
+    owl:unionOf _:n3-1514 .
+
+_:n3-1514 rdf:first ids3cm:CheckListCriteriaGroup ;
+    rdf:rest _:n3-1515 .
+
+_:n3-1515 rdf:first ids3cm:ComponentTestDesignSpecificStrategyType ;
+    rdf:rest rdf:nil .
+
+ids3cm:ComponentTestDesignSpecificStrategyType a owl:Class ;
+    rdfs:label "Class of Component Test Design Specifications Specific Strategy Types"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:CheckListAnswer a owl:Class ;
+    rdfs:label "Question"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:relevantIf a owl:ObjectProperty ;
+    rdfs:label "Relevant if"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:CheckListQuestion ;
+    rdfs:range _:n3-1516 ;
+    dct:description "\r\n        This reference links a question to a previous answer or checklist choice.\r\n        In case the answer has been given or the choice has been selected,\r\n        this question is expected to be asked, otherwise it may be irrelevant.\r\n        If a question has no reference of this kind, it is expected to be asked in any case.\r\n        "@en .
+
+_:n3-1516 a owl:Class ;
+    owl:unionOf _:n3-1517 .
+
+_:n3-1517 rdf:first ids3cm:CheckListQuestionChoice ;
+    rdf:rest _:n3-1518 .
+
+ids3cm:CheckListQuestionChoice a owl:Class ;
+    rdfs:label "Class of Choices"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+_:n3-1518 rdf:first ids3cm:CheckListAnswer ;
+    rdf:rest rdf:nil .
+
+_:n3-1519 a owl:Class ;
+    owl:unionOf _:n3-1520 .
+
+_:n3-1520 rdf:first ids3cm:CheckListQuestionChoice ;
+    rdf:rest _:n3-1521 .
+
+_:n3-1521 rdf:first ids3cm:CheckListAnswer ;
+    rdf:rest rdf:nil .
+
+ids3cm:CheckListQuestion_CHECKBOX_MULTI a owl:Class ;
+    rdfs:label "Checkbox (multi)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:CheckListQuestion ;
+    dct:description "There is more than one valid answer. The question type represents an \"or\" which requires at least one of the provided validChoices, but also allows an arbitrary combination thereof."@en .
+
+ids3cm:CheckListQuestion_CHECKBOX_SINGLE a owl:Class ;
+    rdfs:label "Checkbox (single)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:CheckListQuestion ;
+    dct:description "There is only one valid answer. It consist of an \"and\" of all provided validChoices."@en .
+
+ids3cm:CheckListQuestion_CHECKBOX_EXCLUSIVE a owl:Class ;
+    rdfs:label "Checkbox (exclusive)"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:CheckListQuestion ;
+    dct:description "Only one of the provided choices must be selected when answering this question. In a questionnaire tool, these questions should/can be displayed using radio buttons that only allow the user to select one of the answers. There may be one or multiple acceptable answers (validChoices), but the question is only correctly answered if exactly one of these listed validChoices is selected (\"exclusive or\")."@en .
+
+ids3cm:choice a owl:ObjectProperty ;
+    rdfs:label "Choices"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1522 ;
+    rdfs:range ids3cm:CheckListQuestionChoice .
+
+_:n3-1522 a owl:Class ;
+    owl:unionOf _:n3-1523 .
+
+_:n3-1523 rdf:first ids3cm:CheckListQuestion_CHECKBOX_MULTI ;
+    rdf:rest _:n3-1524 .
+
+_:n3-1524 rdf:first ids3cm:CheckListQuestion_CHECKBOX_SINGLE ;
+    rdf:rest _:n3-1525 .
+
+_:n3-1525 rdf:first ids3cm:CheckListQuestion_CHECKBOX_EXCLUSIVE ;
+    rdf:rest rdf:nil .
+
+ids3cm:CheckListQuestion_TEXT a owl:Class ;
+    rdfs:label "Text"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:CheckListQuestion .
+
+ids3cm:textPlaceholder a rdf:Property ;
+    rdfs:label "Placeholder"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:CheckListQuestion_TEXT ;
+    rdfs:range rdfs:Literal .
+
+ids3cm:textValidator a owl:ObjectProperty ;
+    rdfs:label "Validator"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:CheckListQuestion_TEXT ;
+    rdfs:range odrl:LogicalConstraint ;
+    rdfs:seeAlso "https://www.w3.org/TR/odrl-model/#constraint-logical" .
+
+ids3cm:CheckListQuestion_COMMENT a owl:Class ;
+    rdfs:label "Comment"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:CheckListQuestion .
+
+ids3cm:CheckListQuestion_MATRIX a owl:Class ;
+    rdfs:label "Matrix"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:CheckListQuestion .
+
+ids3cm:MatrixColumn a owl:Class ;
+    rdfs:label "Matrix column"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    dct:description "The class of matrix columns"@en .
+
+ids3cm:matrixTopicText a rdf:Property ;
+    rdfs:label "Additional row-text of given 'CheckListQuestion_MATRIX'"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:CheckListQuestion_MATRIX ;
+    rdfs:range rdfs:Literal .
+
+ids3cm:matrixColumn a owl:ObjectProperty ;
+    rdfs:label "Column of matrix"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:CheckListQuestion_MATRIX ;
+    rdfs:range ids3cm:MatrixColumn .
+
+ids3cm:matrixColumnCellType a owl:ObjectProperty ;
+    rdfs:label "Cell type"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:MatrixColumn ;
+    rdfs:range xsd:string .
+
+ids3cm:validChoice a owl:ObjectProperty ;
+    rdfs:label "valid-choice"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1526 ;
+    rdfs:range ids3cm:CheckListQuestionChoice ;
+    dct:description "\r\n        This reference links a checkbox question to an accepted choice.\r\n        The valid state of the question depends on its type:\r\n        - For a multi-checkbox, one of the multiple valid choices must be checked.\r\n        - For a single-checkbox, the exact combination of valid choices must be checked.\r\n        "@en .
+
+_:n3-1526 a owl:Class ;
+    owl:unionOf _:n3-1527 .
+
+_:n3-1527 rdf:first ids3cm:CheckListQuestion_CHECKBOX_MULTI ;
+    rdf:rest _:n3-1528 .
+
+_:n3-1528 rdf:first ids3cm:CheckListQuestion_CHECKBOX_SINGLE ;
+    rdf:rest rdf:nil .
+
+ids3cm:invalidChoice a owl:ObjectProperty ;
+    rdfs:label "invalid-choice"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1529 ;
+    rdfs:range ids3cm:CheckListQuestionChoice ;
+    dct:description "\r\n        This reference links a checkbox question to a not accepted choice.\r\n        The state of the question is invalid if any of the invalid choices is checked.\r\n        "@en .
+
+_:n3-1529 a owl:Class ;
+    owl:unionOf _:n3-1530 .
+
+_:n3-1530 rdf:first ids3cm:CheckListQuestion_CHECKBOX_MULTI ;
+    rdf:rest _:n3-1531 .
+
+_:n3-1531 rdf:first ids3cm:CheckListQuestion_CHECKBOX_SINGLE ;
+    rdf:rest rdf:nil .
+
+ids3cm:datatype a owl:ObjectProperty ;
+    rdfs:label "datatype"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1532 ;
+    rdfs:range rdfs:Datatype ;
+    dct:description "\r\n        This reference defines the datatype for a text based input.\r\n        It can be used to specify the type of input that should be used for this question.\r\n        Further validation might depend on a specific datatype.\r\n        "@en .
+
+_:n3-1532 a owl:Class ;
+    owl:unionOf _:n3-1533 .
+
+_:n3-1533 rdf:first ids3cm:CheckListQuestion_TEXT ;
+    rdf:rest _:n3-1534 .
+
+_:n3-1534 rdf:first ids3cm:MatrixColumn ;
+    rdf:rest rdf:nil .
+
+ids3cm:pattern a owl:DatatypeProperty ;
+    rdfs:label "pattern"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1535 ;
+    rdfs:range xsd:string ;
+    dct:description "\r\n        This reference defines a required pattern for string inputs.\r\n        The syntax for patterns are regular expressions as defined by xml schema.\r\n        "@en .
+
+_:n3-1535 a owl:Class ;
+    owl:unionOf _:n3-1536 .
+
+_:n3-1536 rdf:first ids3cm:CheckListQuestion_TEXT ;
+    rdf:rest _:n3-1537 .
+
+_:n3-1537 rdf:first ids3cm:MatrixColumn ;
+    rdf:rest rdf:nil .
+
+ids3cm:minLength a owl:DatatypeProperty ;
+    rdfs:label "min-length"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1538 ;
+    rdfs:range xsd:nonNegativeInteger ;
+    dct:description "\r\n        This reference defines a minimum length for string inputs.\r\n        "@en .
+
+_:n3-1538 a owl:Class ;
+    owl:unionOf _:n3-1539 .
+
+_:n3-1539 rdf:first ids3cm:CheckListQuestion_TEXT ;
+    rdf:rest _:n3-1540 .
+
+_:n3-1540 rdf:first ids3cm:MatrixColumn ;
+    rdf:rest rdf:nil .
+
+ids3cm:maxLength a owl:DatatypeProperty ;
+    rdfs:label "max-length"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1541 ;
+    rdfs:range xsd:nonNegativeInteger ;
+    dct:description "\r\n        This reference defines a maximum length for string inputs.\r\n        "@en .
+
+_:n3-1541 a owl:Class ;
+    owl:unionOf _:n3-1542 .
+
+_:n3-1542 rdf:first ids3cm:CheckListQuestion_TEXT ;
+    rdf:rest _:n3-1543 .
+
+_:n3-1543 rdf:first ids3cm:MatrixColumn ;
+    rdf:rest rdf:nil .
+
+ids3cm:minExclusive a owl:DatatypeProperty ;
+    rdfs:label "min-exclusive"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1544 ;
+    rdfs:range xsd:decimal ;
+    dct:description "\r\n        This reference defines a minimum exclusive value for number inputs.\r\n        "@en .
+
+_:n3-1544 a owl:Class ;
+    owl:unionOf _:n3-1545 .
+
+_:n3-1545 rdf:first ids3cm:CheckListQuestion_TEXT ;
+    rdf:rest _:n3-1546 .
+
+_:n3-1546 rdf:first ids3cm:MatrixColumn ;
+    rdf:rest rdf:nil .
+
+ids3cm:minInclusive a owl:DatatypeProperty ;
+    rdfs:label "min-inclusive"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1547 ;
+    rdfs:range xsd:decimal ;
+    dct:description "\r\n        This reference defines a minimum inclusive value for number inputs.\r\n        "@en .
+
+_:n3-1547 a owl:Class ;
+    owl:unionOf _:n3-1548 .
+
+_:n3-1548 rdf:first ids3cm:CheckListQuestion_TEXT ;
+    rdf:rest _:n3-1549 .
+
+_:n3-1549 rdf:first ids3cm:MatrixColumn ;
+    rdf:rest rdf:nil .
+
+ids3cm:maxExclusive a owl:DatatypeProperty ;
+    rdfs:label "max-exclusive"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1550 ;
+    rdfs:range xsd:decimal ;
+    dct:description "\r\n        This reference defines a maximum exclusive value for number inputs.\r\n        "@en .
+
+_:n3-1550 a owl:Class ;
+    owl:unionOf _:n3-1551 .
+
+_:n3-1551 rdf:first ids3cm:CheckListQuestion_TEXT ;
+    rdf:rest _:n3-1552 .
+
+_:n3-1552 rdf:first ids3cm:MatrixColumn ;
+    rdf:rest rdf:nil .
+
+ids3cm:maxInclusive a owl:DatatypeProperty ;
+    rdfs:label "max-inclusive"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1553 ;
+    rdfs:range xsd:decimal ;
+    dct:description "\r\n        This reference defines a maximum inclusive value for number inputs.\r\n        "@en .
+
+_:n3-1553 a owl:Class ;
+    owl:unionOf _:n3-1554 .
+
+_:n3-1554 rdf:first ids3cm:CheckListQuestion_TEXT ;
+    rdf:rest _:n3-1555 .
+
+_:n3-1555 rdf:first ids3cm:MatrixColumn ;
+    rdf:rest rdf:nil .
+
+ids3cm:minCount a owl:DatatypeProperty ;
+    rdfs:label "min-count"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:CheckListQuestion_MATRIX ;
+    rdfs:range xsd:nonNegativeInteger ;
+    dct:description "\r\n        This reference defines a minimum number of entries for a list of inputs.\r\n        "@en .
+
+ids3cm:maxCount a owl:DatatypeProperty ;
+    rdfs:label "max-count"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:CheckListQuestion_MATRIX ;
+    rdfs:range xsd:nonNegativeInteger ;
+    dct:description "\r\n        This reference defines a maximum number of entries for a list of inputs.\r\n        "@en .
+
+ids3cm:Function a owl:Class ;
+    rdfs:label "Class of Functions"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf fno:Function .
+
+ids3cm:ValidationFunction a owl:Class ;
+    rdfs:label "Class of Validation Functions"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf fno:Function .
+
+ids3cm:Problem a owl:Class ;
+    rdfs:label "Class of Problems"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf fno:Problem .
+
+ids3cm:Algorithm a owl:Class ;
+    rdfs:label "Class of Algorithms"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf fno:Algorithm .
+
+ids3cm:solves a owl:ObjectProperty ;
+    rdfs:label "TODO"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:Function ;
+    rdfs:range ids3cm:Problem ;
+    rdfs:subPropertyOf fno:solves .
+
+ids3cm:Parameter a owl:Class ;
+    rdfs:label "Class of Parameters"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf fno:Parameter .
+
+ids3cm:Output a owl:Class ;
+    rdfs:label "Class of Outputs"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf fno:Output .
+
+ids3cm:Mapping a owl:Class ;
+    rdfs:label "Class of Mappings"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf fno:Mapping .
+
+ids3cm:TestResult a owl:Class ;
+    rdfs:label "Class of Test Results"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf odrl:Asset .
+
+ids3cm:TestResultHeaderElement a owl:Class ;
+    rdfs:label "Class of Test Result Header Elements"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:testResultHeaderElementName a owl:DatatypeProperty ;
+    rdfs:label "name"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:TestResultHeaderElement ;
+    rdfs:range xsd:string .
+
+ids3cm:testResultHeaderElementValue a owl:DatatypeProperty ;
+    rdfs:label "value"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:TestResultHeaderElement ;
+    rdfs:range xsd:string .
+
+ids3cm:testResultHeader a owl:ObjectProperty ;
+    rdfs:label "header"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:TestResult ;
+    rdfs:range ids3cm:TestResultHeaderElement .
+
+ids3cm:testResultBody a owl:DatatypeProperty ;
+    rdfs:label "body"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:TestResult ;
+    rdfs:range xsd:string .
+
+ids3cm:facility a owl:ObjectProperty, rdf:Property, skos:Concept ;
+    rdfs:label "Facility"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain odrl:Rule ;
+    rdfs:range ids3cm:Facility ;
+    rdfs:subPropertyOf odrl:assigner ;
+    skos:definition ""@en .
+
+ids3cm:applicant a owl:ObjectProperty, rdf:Property, skos:Concept ;
+    rdfs:label "Applicant"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain odrl:Rule ;
+    rdfs:range ids3cm:Applicant ;
+    rdfs:subPropertyOf odrl:assignee ;
+    skos:definition ""@en .
+
+ids3cm:result a owl:ObjectProperty, rdf:Property, skos:Concept ;
+    rdfs:label "Result"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain odrl:Rule ;
+    rdfs:range ids3cm:TestResult ;
+    rdfs:subPropertyOf odrl:target ;
+    skos:definition ""@en .
+
+ids3cm:ValidationResult_COM_01 a owl:Class ;
+    rdfs:label "Class of 'COM_01' Validations"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:ValidationResult ;
+    ids3cm:criteria ids3c-co:COM_01 .
+
+ids3cm:ValidationResultStatus a owl:Class ;
+    rdfs:label "Class of Validation Results Status"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:ValidationResultStatus_UNDEF a ids3cm:ValidationResultStatus ;
+    rdfs:label "UNDEFINED" ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    skos:definition "Result of given criterion-validation is not defined."@en .
+
+ids3cm:ValidationResultStatus_PASS a ids3cm:ValidationResultStatus ;
+    rdfs:label "PASS" ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    skos:definition "Result of criterion validation is satisfies given criterion."@en .
+
+ids3cm:ValidationResultStatus_FAIL a ids3cm:ValidationResultStatus ;
+    rdfs:label "FAIL" ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    skos:definition "Result of criterion validation does not satisfy given criterion."@en .
+
+ids3cm:ValidationResultStatus_NOT_APPLICABLE a ids3cm:ValidationResultStatus ;
+    rdfs:label "NOT APPLICABLE" ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    skos:definition "Result of criterion validation of given criterion is not applicable."@en .
+
+ids3cm:validationResultStatus a owl:ObjectProperty ;
+    rdfs:label "Validation Result Status"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ValidationResult ;
+    rdfs:range ids3cm:ValidationResultStatus ;
+    rdfs:subPropertyOf odrl:target .
+
+ids3cm:validationResultProvenance a owl:ObjectProperty ;
+    rdfs:label "Validation Result Provenance"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ValidationResult ;
+    rdfs:range ids3cm:ValidationResultProvenance .
+
+ids3cm:ValidationResultProvenance a owl:Class ;
+    rdfs:label "Class Validation Result Provenances"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:testFunction a owl:ObjectProperty ;
+    rdfs:label "Test Function"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1556 ;
+    rdfs:range ids3cm:Function .
+
+_:n3-1556 a owl:Class ;
+    owl:unionOf _:n3-1557 .
+
+_:n3-1557 rdf:first ids3cm:ValidationFunction ;
+    rdf:rest _:n3-1558 .
+
+_:n3-1558 rdf:first ids3cm:ValidationResultProvenance ;
+    rdf:rest rdf:nil .
+
+ids3cm:validationFunction a owl:ObjectProperty ;
+    rdfs:label "Validation Function"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1559 ;
+    rdfs:range ids3cm:ValidationFunction .
+
+_:n3-1559 a owl:Class ;
+    owl:unionOf _:n3-1560 .
+
+_:n3-1560 rdf:first ids3cm:Function ;
+    rdf:rest _:n3-1561 .
+
+_:n3-1561 rdf:first ids3cm:ValidationResultProvenance ;
+    rdf:rest rdf:nil .
+
+ids3cm:ValidationPolicy a owl:Class ;
+    rdfs:label "Validation Policy"@en ;
+    rdfs:subClassOf ids3cm:Policy .
+
+ids3cm:Policy a owl:Class ;
+    rdfs:label "Class of Policies"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf odrl:Policy .
+
+ids3cm:validationPolicy a owl:ObjectProperty ;
+    rdfs:label "Policy"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1562 ;
+    rdfs:range ids3cm:Policy ;
+    rdfs:subPropertyOf ids3cm:policy .
+
+ids3cm:policy a owl:ObjectProperty ;
+    rdfs:label "Policy"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:range ids3cm:Policy .
+
+_:n3-1562 a owl:Class ;
+    owl:unionOf _:n3-1563 .
+
+_:n3-1563 rdf:first ids3cm:AcceptenceRule ;
+    rdf:rest _:n3-1564 .
+
+ids3cm:AcceptenceRule a owl:Class ;
+    rdfs:label "Rule of Accept"@en ;
+    rdfs:subClassOf odrl:Permission .
+
+_:n3-1564 rdf:first ids3cm:FailRule ;
+    rdf:rest _:n3-1565 .
+
+ids3cm:FailRule a owl:Class ;
+    rdfs:label "Rule of Failing"@en ;
+    rdfs:subClassOf odrl:Prohibition .
+
+_:n3-1565 rdf:first ids3cm:Algorithm ;
+    rdf:rest rdf:nil .
+
+ids3cm:accept a owl:ObjectProperty ;
+    rdfs:label "Accept"@en ;
+    rdfs:domain ids3cm:ValidationPolicy ;
+    rdfs:range ids3cm:AcceptenceRule ;
+    rdfs:subPropertyOf odrl:permission .
+
+ids3cm:fail a owl:ObjectProperty ;
+    rdfs:label "Fail"@en ;
+    rdfs:domain ids3cm:ValidationPolicy ;
+    rdfs:range ids3cm:FailRule ;
+    rdfs:subPropertyOf odrl:prohibit .
+
+ids3cm:testResult a owl:ObjectProperty ;
+    rdfs:label "Test Result"@en ;
+    rdfs:domain _:n3-1566 ;
+    rdfs:range ids3cm:TestResult ;
+    rdfs:subPropertyOf odrl:target .
+
+_:n3-1566 a owl:Class ;
+    owl:unionOf _:n3-1567 .
+
+_:n3-1567 rdf:first ids3cm:AcceptenceRule ;
+    rdf:rest _:n3-1568 .
+
+_:n3-1568 rdf:first ids3cm:FailRule ;
+    rdf:rest rdf:nil .
+
+ids3cm:testResultRefinement a owl:ObjectProperty ;
+    rdfs:label "Refinement"@en ;
+    rdfs:domain _:n3-1569 ;
+    rdfs:range odrl:Constraint ;
+    rdfs:subPropertyOf odrl:refinement .
+
+_:n3-1569 a owl:Class ;
+    owl:unionOf _:n3-1570 .
+
+_:n3-1570 rdf:first ids3cm:testResult ;
+    rdf:rest rdf:nil .
+
+ids3cm:created a owl:DatatypeProperty ;
+    rdfs:label "Created"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:Log ;
+    rdfs:range xsd:dateTimeStamp .
+
+ids3cm:creator a owl:ObjectProperty ;
+    rdfs:label "Creator"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:Log ;
+    rdfs:range rdfs:Resource .
+
+ids3cm:Error a owl:Class ;
+    rdfs:label "Class of Errors"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:error a owl:ObjectProperty ;
+    rdfs:label "TODO"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1571 ;
+    rdfs:range ids3cm:Error .
+
+_:n3-1571 a owl:Class ;
+    owl:unionOf _:n3-1572 .
+
+_:n3-1572 rdf:first ids3cm:TestResult ;
+    rdf:rest rdf:nil .
+
+ids3cm:mandatory a owl:DatatypeProperty ;
+    rdfs:label "Mandatory"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:range xsd:boolean .
+
+ids3cm:message a owl:DatatypeProperty ;
+    rdfs:label "Message"@en ;
+    rdfs:domain _:n3-1573 ;
+    rdfs:range xsd:string .
+
+_:n3-1573 a owl:Class ;
+    owl:unionOf _:n3-1574 .
+
+_:n3-1574 rdf:first ids3cm:Error ;
+    rdf:rest rdf:nil .
+
+ids3cm:startedAt a owl:DatatypeProperty ;
+    rdfs:label "started at"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1575 ;
+    rdfs:range xsd:dateTimeStamp .
+
+_:n3-1575 a owl:Class ;
+    owl:unionOf _:n3-1576 .
+
+_:n3-1576 rdf:first ids3cm:TestResult ;
+    rdf:rest rdf:nil .
+
+ids3cm:endedAt a owl:DatatypeProperty ;
+    rdfs:label "ended at"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1577 ;
+    rdfs:range xsd:dateTimeStamp .
+
+_:n3-1577 a owl:Class ;
+    owl:unionOf _:n3-1578 .
+
+_:n3-1578 rdf:first ids3cm:TestResult ;
+    rdf:rest rdf:nil .
+
+ids3cm:Status a owl:Class ;
+    rdfs:label "Class of Status"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:AuditLogStatus a owl:Class ;
+    rdfs:label "Class of Audit Log Status"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:Log .
+
+ids3cm:PASSED a ids3cm:AuditLogStatus ;
+    rdfs:label "passed"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    dct:description "This status describes a successful test run."@en .
+
+ids3cm:FAILED a ids3cm:AuditLogStatus ;
+    rdfs:label "failed"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    dct:description "This status describes a unsuccessful test run."@en .
+
+ids3cm:NOT_APPLICABLE a ids3cm:AuditLogStatus ;
+    rdfs:label "not applicable"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    dct:description "This status describes a given test result not determinable as 'passed' or 'failed'."@en .
+
+ids3cm:TestSpecification a owl:Class ;
+    rdfs:label "Class of Test Specifications"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:Specification .
+
+ids3cm:ComponentTestCaseSpecification a owl:Class ;
+    rdfs:label "Class of Component Test Case Specifications"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:ComponentTestSpecification .
+
+ids3cm:testCaseSpecification a owl:ObjectProperty ;
+    rdfs:label "Test Case Specification"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain _:n3-1579 ;
+    rdfs:range ids3cm:ComponentTestCaseSpecification .
+
+_:n3-1579 a owl:Class ;
+    owl:unionOf _:n3-1580 .
+
+_:n3-1580 rdf:first ids3cm:InitialCondition ;
+    rdf:rest _:n3-1581 .
+
+ids3cm:InitialCondition a owl:Class ;
+    rdfs:label "Class of Initial Test Conditions"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:TestCondition .
+
+_:n3-1581 rdf:first ids3cm:FinalCondition ;
+    rdf:rest _:n3-1582 .
+
+ids3cm:FinalCondition a owl:Class ;
+    rdfs:label "Class of Final Test Conditions"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:TestCondition .
+
+_:n3-1582 rdf:first ids3cm:ComponentTestDesignSpecificStrategyType ;
+    rdf:rest rdf:nil .
+
+ids3cm:testDesignApplicability a owl:DatatypeProperty ;
+    rdfs:label "Applicability"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestDesignSpecification ;
+    rdfs:range rdf:langString .
+
+ids3cm:testDesignSecurityProfile a owl:ObjectProperty ;
+    rdfs:label "Profile"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestDesignSpecification ;
+    rdfs:range ids3cm:ComponentTestDesignSpecification_SecurityProfile .
+
+ids3cm:ComponentTestDesignSpecification_SecurityProfile a owl:Class ;
+    rdfs:label "Class of Component Test Design Specification Profiles"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:SecurityProfile .
+
+ids3cm:testDesignAcceptanceCriteria_POSITIV a owl:DatatypeProperty ;
+    rdfs:label "Accept"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestDesignSpecification_SecurityProfile ;
+    rdfs:range rdf:langString ;
+    dct:description "Expresses agreements."@en .
+
+ids3cm:testDesignAcceptanceCriteria_NEGATIV a owl:DatatypeProperty ;
+    rdfs:label "Not Accept"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestDesignSpecification_SecurityProfile ;
+    rdfs:range rdf:langString ;
+    dct:description "Expresses repudiates."@en .
+
+ids3cm:ComponentTestDesignSpecification_BaseSecurityProfile a owl:Class ;
+    rdfs:label "Class of Component Test Design Specification `Base` Security Profiles"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:ComponentTestDesignSpecification_SecurityProfile .
+
+ids3cm:ComponentTestDesignSpecification_TrustSecurityProfile a owl:Class ;
+    rdfs:label "Class of Component Test Design Specification `Trust` Security Profiles"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:ComponentTestDesignSpecification_SecurityProfile .
+
+ids3cm:ComponentTestDesignSpecification_TrustPlusSecurityProfile a owl:Class ;
+    rdfs:label "Class of Component Test Design Specification `Trust Plus` Security Profiles"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:ComponentTestDesignSpecification_SecurityProfile .
+
+ids3cm:testDesignSpecificStrategy a owl:ObjectProperty ;
+    rdfs:label "Specific Strategy"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestDesignSpecification ;
+    rdfs:range ids3cm:ComponentTestDesignSpecificStrategy .
+
+ids3cm:ComponentTestDesignSpecificStrategy a owl:Class ;
+    rdfs:label "Class of Component Test Design Specifications Specific Strategy"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:ComponentTestDesignSpecificStrategyTopic a owl:Class ;
+    rdfs:label "Class of Component Test Design Specifications Specific Strategy Topic"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:testDesignSpecificStrategyTopic a owl:ObjectProperty ;
+    rdfs:label "Evaluation Tasks"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestDesignSpecificStrategyType ;
+    rdfs:range ids3cm:ComponentTestDesignSpecificStrategyTopic .
+
+ids3cm:testDesignSpecificStrategyType a owl:ObjectProperty ;
+    rdfs:label "Evaluation Tasks"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestCaseSpecification ;
+    rdfs:range ids3cm:ComponentTestDesignSpecificStrategyType .
+
+ids3cm:ComponentTestDesignSpecificStrategyOption a owl:Class ;
+    rdfs:label "Class of Component Test Design Specifications Specific Strategy Option"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:testDesignSpecificStrategyOption a owl:ObjectProperty ;
+    rdfs:label "Option"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestDesignSpecificStrategyTopic ;
+    rdfs:range ids3cm:ComponentTestDesignSpecificStrategyOption .
+
+ids3cm:ComponentTestDesignSpecificStrategyOption_DOCUMENT_REVIEW a ids3cm:ComponentTestDesignSpecificStrategyOption ;
+    rdfs:label "document review"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:ComponentTestDesignSpecificStrategyOption_FUNCTIONAL_TESTING a ids3cm:ComponentTestDesignSpecificStrategyOption ;
+    rdfs:label "functional testing"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:ComponentTestDesignSpecificStrategyOption_SECURITY_TESTING a ids3cm:ComponentTestDesignSpecificStrategyOption ;
+    rdfs:label "security testing"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:ComponentTestDesignSpecificStrategyOption_SOURCE_CODE_AUDIT a ids3cm:ComponentTestDesignSpecificStrategyOption ;
+    rdfs:label "source code audit"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:ComponentTestDesignSpecificStrategyOption_ONSITE_VISIT a ids3cm:ComponentTestDesignSpecificStrategyOption ;
+    rdfs:label "onsite visit"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:testDesignSpecificStrategy_ChecklistApproach a owl:ObjectProperty ;
+    rdfs:label "Checklist Approach"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestDesignSpecificStrategy ;
+    rdfs:range ids3cm:ComponentTestDesignSpecificStrategyType .
+
+ids3cm:testDesignSpecificStrategy_ConceptReview a owl:ObjectProperty ;
+    rdfs:label "Concept Review"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestDesignSpecificStrategy ;
+    rdfs:range ids3cm:ComponentTestDesignSpecificStrategyType .
+
+ids3cm:testDesignSpecificStrategy_HighAssuranceEvaluation a owl:ObjectProperty ;
+    rdfs:label "High Assurance Evaluation"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestDesignSpecificStrategy ;
+    rdfs:range rdf:langString .
+
+ids3cm:TestType a owl:Class ;
+    rdfs:label "Class of Test Types"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:BaseProfileChecklistApproach a owl:Class ;
+    rdfs:label "Class of Test Type 'Base Profile Checklist Approach'"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:TestType .
+
+ids3cm:BaseProfileConceptReview a owl:Class ;
+    rdfs:label "Class of Test Type 'Base Profile Concept Review'"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:TestType .
+
+ids3cm:TrustProfileConceptReview a owl:Class ;
+    rdfs:label "Class of Test Type 'Trust Profile Concept Review'"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:TestType .
+
+ids3cm:TrustProfileHighAssuranceEvaluation a owl:Class ;
+    rdfs:label "Class of Test Type 'Trust Profile High Assurance Evaluation'"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:TestType .
+
+ids3cm:TrustPlusProfileConceptReview a owl:Class ;
+    rdfs:label "Class of Test Type 'Trust+ Profile Concept Review'"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:subClassOf ids3cm:TestType .
+
+ids3cm:TestCondition a owl:Class ;
+    rdfs:label "Class of Test Conditions"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:TestRole a owl:Class ;
+    rdfs:label "Class of Roles in given Test"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:UNSPECIFIED a ids3cm:TestRole ;
+    rdfs:label "UNSPECIFIED"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:PROVIDER a ids3cm:TestRole ;
+    rdfs:label "PROVIDER"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:CONSUMER a ids3cm:TestRole ;
+    rdfs:label "CONSUMER"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:testRole a owl:ObjectProperty ;
+    rdfs:label "Role in given Test"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestSpecification ;
+    rdfs:range ids3cm:TestRole .
+
+ids3cm:TestConfig a owl:Class ;
+    rdfs:label "Class of Test Case Configurations"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .
+
+ids3cm:testConfig a owl:ObjectProperty ;
+    rdfs:label "Config of given Test"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestSpecification ;
+    rdfs:range ids3cm:TestConfig .
+
+ids3cm:trigger a owl:DatatypeProperty ;
+    rdfs:label "Trigger"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestSpecification ;
+    rdfs:range xsd:string .
+
+ids3cm:initialCondition a owl:v ;
+    rdfs:label "Initial Condition"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestSpecification ;
+    rdfs:range ids3cm:InitialCondition ;
+    rdfs:subPropertyOf rdfs:comment .
+
+ids3cm:expectedBehavior a owl:DatatypeProperty ;
+    rdfs:label "Expected Behavior"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestSpecification ;
+    rdfs:range rdf:langString ;
+    rdfs:subPropertyOf rdfs:comment .
+
+ids3cm:finalCondition a owl:ObjectProperty ;
+    rdfs:label "Final Condition"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestSpecification ;
+    rdfs:range ids3cm:FinalCondition ;
+    rdfs:subPropertyOf rdfs:comment .
+
+ids3cm:coveredTDS a owl:ObjectProperty ;
+    rdfs:label "Covered Test Design Specification"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> ;
+    rdfs:domain ids3cm:ComponentTestCaseSpecification ;
+    rdfs:range ids3cm:ComponentTestDesignSpecification ;
+    dct:description "An informal reference that connects a test case with all the test designs where it covers at least one test design profile. It is not a replacement for references from a specific profile, but it helps to build up test cases and find all relevant test designs."@en .
+
+ids3cm:Specification a owl:Class ;
+    rdfs:label "Class of Specifications"@en ;
+    rdfs:isDefinedBy <https://w3id.org/ids3cm/> .

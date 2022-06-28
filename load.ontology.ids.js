@@ -5,6 +5,9 @@ module.exports = {
     'dct:title':       'load.ontology.ids',
     'dct:alternative': '@nrd/fua.resource.ontology.ids',
     'dct:requires':    [{
+        'dct:identifier': './ids/load.ids.js',
+        'dct:format':     'application/fua.load+js'
+    }, {
         'dct:identifier': './ids3cm/load.ids3cm.js',
         'dct:format':     'application/fua.load+js'
     }, {

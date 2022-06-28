@@ -6,6 +6,9 @@
     ".": {
       "require": "./load.ontology.ids.js"
     },
+    "./ids": {
+      "require": "./ids/load.ids.js"
+    },
     "./ids3cm": {
       "require": "./ids3cm/load.ids3cm.js"
     },
