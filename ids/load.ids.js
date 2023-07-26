@@ -5,7 +5,7 @@ module.exports = {
     'dct:title':       'load.ids',
     'dct:alternative': '@nrd/fua.resource.ontology.ids/ids',
     'dct:requires':    [{
-        'dct:identifier': './ids.ttl',
+        'dct:identifier': './local/ids.ttl',
         'dct:format':     'text/turtle'
     }]
 };
