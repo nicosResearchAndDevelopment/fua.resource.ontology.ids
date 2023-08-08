@@ -16,6 +16,10 @@
       "require": "./src/ids3c-co/load.js"
     }
   },
+  "files": [
+    "src/*",
+    "data/*"
+  ],
   "devDependencies": {
     "mocha": "^8.2.1",
     "expect": "^26.6.2",
