@@ -2,10 +2,10 @@ module.exports = {
     '@context':        'fua.load.rdf',
     'dct:identifier':  __filename,
     'dct:format':      'application/fua.load+js',
-    'dct:title':       'load.ids',
-    'dct:alternative': '@nrd/fua.resource.ontology.ids/ids',
+    'dct:title':       'load',
+    'dct:alternative': '@nrd/fua.resource.ontology.ids/ids3c-co',
     'dct:requires':    [{
-        'dct:identifier': './local/ids.ttl',
+        'dct:identifier': '../../data/ids3c-co/ids3c-co.ttl',
         'dct:format':     'text/turtle'
     }]
 };

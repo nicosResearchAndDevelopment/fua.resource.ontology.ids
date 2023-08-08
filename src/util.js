@@ -10,7 +10,7 @@ const
         ..._util,
         assert: _util.Assert('resource.ontology')
     },
-    root_dir               = __dirname,
+    root_dir               = path.basename(__dirname),
     default_options        = {
         method:         'GET',
         mode:           'cors',

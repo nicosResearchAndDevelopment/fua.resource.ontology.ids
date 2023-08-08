@@ -4,16 +4,16 @@
   "description": "",
   "exports": {
     ".": {
-      "require": "./load.ontology.ids.js"
+      "require": "./src/load.js"
     },
     "./ids": {
-      "require": "./ids/load.ids.js"
+      "require": "./src/ids/load.js"
     },
     "./ids3cm": {
-      "require": "./ids3cm/load.ids3cm.js"
+      "require": "./src/ids3cm/load.js"
     },
     "./ids3c-co": {
-      "require": "./ids3c-co/load.ids3c-co.js"
+      "require": "./src/ids3c-co/load.js"
     }
   },
   "devDependencies": {
