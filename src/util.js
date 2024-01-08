@@ -1,7 +1,6 @@
 const
     fs                     = require('fs/promises'),
     path                   = require('path'),
-    fetch                  = require('node-fetch'),
     rdf                    = require('@nrd/fua.module.rdf'),
     {TermFactory, Dataset} = require('@nrd/fua.module.persistence'),
     {Readable}             = require('stream'),
