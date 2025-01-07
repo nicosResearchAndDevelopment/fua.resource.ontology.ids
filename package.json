@@ -1,5 +1,5 @@
 {
-  "name": "@nrd/fua.resource.ontology.ids",
+  "name": "@fua/resource.ontology.ids",
   "version": "1.0.0",
   "description": "",
   "exports": {
@@ -21,19 +21,24 @@
     "data/*"
   ],
   "devDependencies": {
-    "mocha": "^10.2.0",
-    "expect": "^26.6.2",
-    "@nrd/fua.core.util": "^1.0.0",
-    "@nrd/fua.module.rdf": "^1.0.0",
-    "@nrd/fua.module.persistence": "^1.0.0"
+    "expect": "26.x",
+    "mocha": "10.x",
+    "@fua/core.util": "^1.0.0",
+    "@fua/module.rdf": "^1.0.0",
+    "@fua/module.persistence": "^1.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
+  },
+  "mocha": {
+    "bail": false,
+    "recursive": false,
+    "spec": "test/*.test.js"
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@git02.int.nsc.ag:10022/research/fua/resource/ontology/ids.git"
+    "url": "ssh://git@github.com:nicosResearchAndDevelopment/fua.resource.ontology.ids.git"
   },
-  "author": "spetrac@nicos-ag.com",
-  "license": "UNLICENSED"
+  "author": "Simon Petrac <pfoerdie@gmail.com>",
+  "license": "MIT"
 }
